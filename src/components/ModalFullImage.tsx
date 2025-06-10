@@ -61,8 +61,15 @@ export const ModalFullImage: React.FC<ModalFullImageProps> = ({
       visible={isVisible}
       onRequestClose={onClose}
     >
-      <View style={styles.modalOverlay}>
-        <View style={styles.modalContent}>
+      <Pressable
+        style={styles.modalOverlay}
+        onPress={onClose}
+        accessibilityRole="button"
+      >
+        <View
+          style={styles.modalContent}
+          testID="modal-content"
+        >
           {/* Full-size Image */}
           <Image
             source={{ uri: imageUrl }}
@@ -70,12 +77,14 @@ export const ModalFullImage: React.FC<ModalFullImageProps> = ({
             resizeMode="contain"
           />
           {/* Close Button */}
-          <Pressable 
-            onPress={onClose} 
+          <Pressable
+            onPress={onClose}
+            accessibilityRole="button"
+            accessibilityLabel="Cerrar imagen"
             style={({ pressed }) => [
               styles.closeButton,
-              pressed && { opacity: themeProps.animations?.opacity?.pressed || 0.7 }
-            ]} 
+              pressed && { opacity: themeProps.animations?.opacity?.pressed || 0.7 },
+            ]}
             hitSlop={10}
           >
             <Ionicons 
@@ -83,9 +92,9 @@ export const ModalFullImage: React.FC<ModalFullImageProps> = ({
               size={24} 
               color={themeProps.colors.neutral.white} 
             />
-            </Pressable>
+          </Pressable>
         </View>
-      </View>
+      </Pressable>
     </Modal>
   );
 };

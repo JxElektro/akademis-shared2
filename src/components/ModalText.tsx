@@ -125,8 +125,17 @@ export const ModalText: React.FC<ModalTextProps> = ({
       onRequestClose={onClose}
       statusBarTranslucent
     >
-      <Pressable style={styles.modalOverlay} onPress={onClose}>
-        <Pressable style={styles.modalContent} onPress={e => e.stopPropagation()}>
+      <Pressable
+        style={styles.modalOverlay}
+        onPress={onClose}
+        accessibilityRole="button"
+        accessibilityLabel="Cerrar modal"
+      >
+        <Pressable
+          style={styles.modalContent}
+          onPress={e => e.stopPropagation()}
+          testID="modal-content"
+        >
           <View style={styles.header}>
             <View style={styles.titleContainer}>
               <Text style={styles.modalTitle} numberOfLines={2} adjustsFontSizeToFit>
@@ -135,6 +144,8 @@ export const ModalText: React.FC<ModalTextProps> = ({
             </View>
             <Pressable
               onPress={onClose}
+              accessibilityRole="button"
+              accessibilityLabel="Cerrar modal"
               style={({ pressed }) => [
                 styles.closeButton,
                 pressed && { opacity: themeProps.animations?.opacity?.pressed || 0.7 }
