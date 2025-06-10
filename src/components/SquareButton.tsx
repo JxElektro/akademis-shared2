@@ -9,6 +9,11 @@ import {
   ButtonStatus,
   SquareButtonProps,
 } from '../types/componentTypes';
+import {
+  getButtonFeedbackStyle,
+  getTextFeedbackStyle,
+  ResponseStatus,
+} from '../utils/feedbackStyles';
 
 // Reexportar los tipos para mantener compatibilidad externa
 export type {
@@ -193,22 +198,28 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
 
   containerType = getContainerType(state as ButtonState);
 
-  // Sobrescribir el tipo de contenedor si `status` es 'incorrect' o 'correct'
-  if (status === 'incorrect') {
-    containerType = {
-      backgroundColor: themeProps.colors.feedback.error.main,
-      borderWidth: themeProps.borders.width.normal,
-      borderColor: themeProps.colors.feedback.error.dark,
-    };
-    textColorStyle = { color: themeProps.colors.neutral.white };
-  } else if (status === 'correct') {
-    containerType = {
-      backgroundColor: themeProps.colors.feedback.success.main,
-      borderWidth: themeProps.borders.width.normal,
-      borderColor: themeProps.colors.feedback.success.dark,
-    };
-    textColorStyle = { color: themeProps.colors.neutral.white };
-  }
+  // Estilos de feedback centralizados
+  const feedbackContainerStyle = React.useMemo(
+    () =>
+      getButtonFeedbackStyle({
+        theme: themeProps,
+        status: (status ?? 'pending') as ResponseStatus,
+        isSelected: true,
+        isCorrectAnswer: status === 'correct',
+      }),
+    [themeProps, status]
+  );
+
+  const feedbackTextStyle = React.useMemo(
+    () =>
+      getTextFeedbackStyle({
+        theme: themeProps,
+        status: (status ?? 'pending') as ResponseStatus,
+        isSelected: true,
+        isCorrectAnswer: status === 'correct',
+      }),
+    [themeProps, status]
+  );
 
   return (
     <TouchableOpacity
@@ -217,6 +228,7 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
         styles.container,
         containerSize,
         containerType,
+        feedbackContainerStyle,
         containerStyle,
         disabled && styles.disabled,
         (isFocused || isAccessibilityFocused) && [styles.focused, focusedStyle],
@@ -235,7 +247,7 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
         <Text style={[styles.cross, textColorStyle]}>{'X'}</Text>
       ) : (
         <Text
-          style={[styles.text, textSize, textColorStyle]}
+          style={[styles.text, textSize, textColorStyle, feedbackTextStyle]}
           numberOfLines={1}
           adjustsFontSizeToFit={true}
           minimumFontScale={0.5}

@@ -3,6 +3,11 @@ import { Pressable, Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { CustomButtonProps } from '../types/componentTypes';
 import type { ThemeProps } from '../types';
+import {
+  getButtonFeedbackStyle,
+  getTextFeedbackStyle,
+  ResponseStatus,
+} from '../utils/feedbackStyles';
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   label,
@@ -15,6 +20,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   borderColor,
   textColor,
   disabled = false,
+  status = 'pending',
   testID,
 }) => {
   // Crear estilos basados en el tema
@@ -23,6 +29,29 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   // Obtener colores del tema o usar los proporcionados como props
   const buttonBackgroundColor = backgroundColor || themeProps.colors.primary.main;
   const buttonTextColor = textColor || themeProps.colors.neutral.white;
+
+  // Estilos de feedback visual
+  const feedbackButtonStyle = React.useMemo(
+    () =>
+      getButtonFeedbackStyle({
+        theme: themeProps,
+        status: status as ResponseStatus,
+        isSelected: true, // Por simplicidad asumimos que el botón es la selección del usuario
+        isCorrectAnswer: status === 'correct',
+      }),
+    [themeProps, status]
+  );
+
+  const feedbackTextStyle = React.useMemo(
+    () =>
+      getTextFeedbackStyle({
+        theme: themeProps,
+        status: status as ResponseStatus,
+        isSelected: true,
+        isCorrectAnswer: status === 'correct',
+      }),
+    [themeProps, status]
+  );
 
   return (
     <Pressable
@@ -36,6 +65,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           opacity: pressed ? themeProps.animations.opacity.pressed : 1,
           transform: [{ scale: pressed ? 0.98 : 1 }],
         },
+        feedbackButtonStyle,
         style,
       ]}
       accessibilityLabel={label}
@@ -46,6 +76,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           style={[
             styles.buttonText,
             { color: disabled ? themeProps.colors.neutral.gray500 : buttonTextColor },
+            feedbackTextStyle,
             textStyle,
           ]}
           numberOfLines={1}

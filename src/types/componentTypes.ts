@@ -25,6 +25,8 @@ export interface CustomButtonProps {
   backgroundColor?: string;
   borderColor?: string;
   textColor?: string;
+  /** Feedback de respuesta */
+  status?: 'pending' | 'correct' | 'incorrect';
   disabled?: boolean;
   themeProps: ThemeProps;
   testID?: string;
@@ -50,6 +52,8 @@ export interface CardProps {
   children: React.ReactNode;
   style?: ViewStyle;
   themeProps: ThemeProps;
+  /** Feedback de respuesta */
+  status?: 'pending' | 'correct' | 'incorrect';
 }
 
 export interface CardContentProps {
