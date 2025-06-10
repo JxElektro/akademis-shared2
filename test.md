@@ -127,5 +127,153 @@ Se añadieron atributos `accessibilityRole="button"` y `accessibilityLabel` en l
 
 Resultado: **6/6 suites – 14/14 tests** aprobados.
 
+## 10. Guía de tests por componente Reactivo
+
+A partir de esta versión vamos a incluir **tests de integración con Testing Library** para cada componente de *reactivos* que vive en `src/reactives/`.  El objetivo es validar los casos de uso más importantes (render inicial, interacción principal y feedback de estado) sin depender de lógica interna ni de APIs nativas.
+
+### 10.1 Patrones generales
+1. **Renderizar el componente dentro de `ThemeProvider`** usando el tema por defecto o un mock de `themeProps`.
+2. **Proveer todas las props requeridas** (p.
+   ej. `reactive`, `responseUser`, `themeProps`, etc.).  Para cada prop compleja se recomienda crear un *fixture* en `__fixtures__/reactives/`.
+3. **Simular la interacción principal** con `fireEvent` o `userEvent`:
+   * `press` para botones (`AlternativeButton`, `SquareButton`).
+   * `drag` y `drop` (solo en web) con `fireEvent.dragStart/dragOver/drop` cuando sea posible.
+4. **Afirmar el cambio de estado visual**:
+   * Comprobar que los estilos cambian (bordes de éxito/error) o que aparecen elementos de feedback.
+   * Verificar que el *callback* `onResponseChange` se invoque con los valores esperados.
+5. **Evitar snapshots** salvo para componentes puros sin interacción.
+
+### 10.2 Checklist inicial de componentes a cubrir
+
+| Componente | Archivo | Estado |
+|------------|---------|--------|
+| NoReactive | `src/reactives/NoReactive.tsx` | ✔ creado |
+| Reactive1 | `src/reactives/Reactive1.tsx` | ✔ creado |
+| Reactive2 | `src/reactives/Reactive2.tsx` | ✔ creado |
+| Reactive3 | `src/reactives/Reactive3.tsx` | ✔ creado |
+| Reactive7 | `src/reactives/Reactive7.tsx` | ✔ creado |
+| Reactive12 | `src/reactives/Reactive12.tsx` | ✔ creado |
+| Reactive18 | `src/reactives/Reactive18.tsx` | ✔ creado |
+| Reactive20 | `src/reactives/Reactive20.tsx` | ✔ creado |
+| Reactive21 | `src/reactives/Reactive21.tsx` | ✔ creado |
+| Reactive25 | `src/reactives/Reactive25.tsx` | ✔ creado |
+| Reactive38 | `src/reactives/Reactive38.tsx` | ✔ creado |
+| Reactive40 | `src/reactives/Reactive40.tsx` | ✔ creado |
+| Reactive42 | `src/reactives/Reactive42.tsx` | ✔ creado |
+| Reactive52 | `src/reactives/Reactive52.tsx` | ✔ creado |
+| Reactive58 | `src/reactives/Reactive58.tsx` | ✔ creado |
+| Reactive68 | `src/reactives/Reactive68.tsx` | ✔ creado |
+| Reactive70 | `src/reactives/Reactive70.tsx` | ✔ creado |
+| Reactive71 | `src/reactives/Reactive71.tsx` | ✔ creado |
+
+> Marca la casilla cuando el *test suite* correspondiente exista y pase (`npm test`).
+
+### 10.3 Estructura de archivos de test
+
+```
+src/
+  __tests__/reactives/
+    Reactive1.test.tsx
+    Reactive2.test.tsx
+    …
+__fixtures__/
+  reactives/
+    reactive1-basic.json
+    reactive1-correct.json
+    …
+```
+
+*Los fixtures contendrán los JSON mínimos de `ReactiveSchema` necesarios para renderizar cada componente.*
+
+### 10.4 Ejemplo mínimo (NoReactive)
+
+```tsx
+afterEach(cleanup);
+
+describe('<NoReactive />', () => {
+  const defaultProps = { themeProps: defaultThemeProps };
+
+  it('muestra el texto por defecto', () => {
+    const { getByText } = render(<NoReactive {...defaultProps} />);
+    expect(getByText(/No hay reactivo seleccionado/i)).toBeTruthy();
+  });
+});
+```
+
+> Copia este patrón y ajusta *props* y *expectations* según el componente.
+
+### 10.5 Próximos pasos
+1. Crear carpeta `__tests__/reactives` y el primer test para `<NoReactive />`.
+2. Ejecutar `npm test` y actualizar la columna **Estado** a "✔" cuando pase.
+3. Repetir para el resto de componentes.
+
+## 11. Resumen de cobertura después de la segunda iteración (10 Jun 2025)
+
+Tras añadir casos extra para los componentes con menor cobertura se obtuvieron los siguientes resultados con `npm test --coverage`:
+
+| Métrica global | Antes | Ahora |
+| -------------- | ----- | ----- |
+| % Statements   | 68 %  | **71 %** |
+| % Branches     | 45 %  | **48 %** |
+| % Functions    | 62 %  | **66 %** |
+| % Lines        | 71 %  | **75 %** |
+
+Componentes que superaron el umbral mínimo (55 % líneas): `Reactive38`, `Reactive42`, `Reactive58`, `Reactive71`.
+
+Componente que **sigue por debajo** y requiere más pruebas:
+
+* `Reactive12` → 49 % líneas / 47 % statements (falta cubrir drag-and-drop completo y callbacks de respuesta final).
+
+> Próximo objetivo: llevar `Reactive12` por encima del 70 % añadiendo tests que simulen la colocación correcta de todas las alternativas y validen los bordes de éxito/error.
+
+### 11.1 Detalle de cobertura por componente (líneas)
+
+| Componente | Cobertura líneas |
+| ---------- | ---------------- |
+| NoReactive | 100 % |
+| Reactive1 | 83 % |
+| Reactive2 | 97 % |
+| Reactive3 | 94 % |
+| Reactive7 | 93 % |
+| **Reactive12** | **49 %** |
+| Reactive18 | 74 % |
+| Reactive20 | 85 % |
+| Reactive21 | 91 % |
+| Reactive25 | 90 % |
+| Reactive38 | 55 % |
+| Reactive40 | 90 % |
+| Reactive42 | 60 % |
+| Reactive52 | 90 % |
+| Reactive58 | 94 % |
+| Reactive68 | 82 % |
+| Reactive70 | 81 % |
+| Reactive71 | 77 % |
+
+### 11.2 Comandos rápidos
+
+* Ejecutar todas las pruebas con cobertura:
+
+```bash
+npm test -- --coverage
+```
+
+* Ver reporte HTML de cobertura:
+
+```bash
+open coverage/lcov-report/index.html  # macOS
+```
+
+* Ejecutar una sola suite:
+
+```bash
+npm test src/__tests__/reactives/Reactive12.test.tsx
+```
+
+* Correr Jest en modo watch interactivo:
+
+```bash
+npm test -- --watch
+```
+
 ---
 Estos puntos resumen los problemas encontrados (doble mock de RN, falta de preset Babel) y cómo resolverlos. 
