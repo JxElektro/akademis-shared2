@@ -1,15 +1,12 @@
-// src/shared-components/reactives/reactivesFiles/NoReactive.tsx
-
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const NoReactive: React.FC = () => {
+export const NoReactive: React.FC = () => {
   return (
     <View style={styles.outerContainer}>
       <View style={styles.container}>
         <FontAwesome name="exclamation-circle" size={24} color="red" />
-
         <Text style={styles.title}>No hay reactivo seleccionado</Text>
         <Text style={styles.message}>
           Aún no has creado una pregunta. Completa la información requerida en el formulario para construir tu pregunta y visualizarla aquí.
@@ -51,5 +48,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
 });
-
-export default NoReactive;

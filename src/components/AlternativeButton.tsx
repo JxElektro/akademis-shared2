@@ -1,18 +1,8 @@
 // components/AlternativeButton.tsx
 import React from 'react';
-import { ThemeProps } from '../types';    
 import { Pressable, Text, View, StyleSheet, TextStyle, ViewStyle } from 'react-native';
-
-
-interface AlternativeButtonProps {
-  onPress: () => void;
-  text: string;
-  isSelected: boolean;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  accessibilityLabel?: string;
-  isCorrectAnswer?: boolean;
-  themeProps: ThemeProps;
-}
+import { AlternativeButtonProps } from '../types/componentTypes';
+import type { ThemeProps } from '../types';
 
 const AlternativeButton: React.FC<AlternativeButtonProps> = ({
   onPress,

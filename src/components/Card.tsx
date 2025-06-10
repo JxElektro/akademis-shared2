@@ -1,19 +1,8 @@
 // src/components/ui/Card.tsx   
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { ThemeProps } from '../types';
-
-interface CardProps {
-  children: React.ReactNode;
-  style?: ViewStyle;
-  themeProps: ThemeProps;
-}
-
-interface CardContentProps {
-  children: React.ReactNode;
-  style?: ViewStyle;
-  themeProps: ThemeProps;
-}
+import type { ThemeProps } from '../types';
+import { CardProps, CardContentProps } from '../types/componentTypes';
 
 export const Card: React.FC<CardProps> = ({ 
   children, 

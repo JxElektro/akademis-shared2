@@ -1,49 +1,22 @@
 // src/shared-components/ui/SquareButton.tsx
 import React from 'react';
-import { ThemeProps } from '../types';
-import { Pressable, Text, View, StyleSheet, TextStyle, ViewStyle, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import type { ThemeProps } from '../types';
+import {
+  ButtonSize,
+  ButtonState,
+  ButtonColor,
+  ButtonStatus,
+  SquareButtonProps,
+} from '../types/componentTypes';
 
-export type ButtonSize = 'extraSmall' | 'small' | 'medium' | 'large' | 'keyboardSmall' | 'keyboardMedium' | 'alternative';
-export type ButtonState = 'border' | 'incomplete' | 'empty' | 'selected' | 'unselected' | 'subtraction' | 'default';
-export type ButtonColor = 'normal' | 'rose' | 'yellow' | 'blue' | 'green';
-export type ButtonStatus = 'incorrect' | 'correct' | undefined;
-
-interface SquareButtonProps {
-  /** Texto que se mostrará en el botón */
-  text?: string;
-  /** Función que se ejecutará al presionar el botón */
-  onPress?: () => void;
-  /** Tamaño del botón */
-  size: ButtonSize;
-  /** Estado visual del botón */
-  state?: ButtonState;
-  /** Color del botón */
-  color?: ButtonColor;
-  /** Estado de validación del botón */
-  status?: ButtonStatus;
-  /** Número máximo de caracteres permitidos */
-  max?: number;
-  /** Color personalizado del texto */
-  textColor?: string;
-  /** Etiqueta de accesibilidad */
-  accessibilityLabel?: string;
-  /** Estilos adicionales para el contenedor */
-  containerStyle?: ViewStyle;
-  /** Identificador para pruebas */
-  testID?: string;
-  /** Indica si el botón está deshabilitado */
-  disabled?: boolean;
-  /** Indica si el botón está enfocado */
-  isFocused?: boolean;
-  /** Estilos adicionales para el estado enfocado */
-  focusedStyle?: ViewStyle;
-  /** Función que se ejecuta cuando el botón recibe el foco */
-  onFocus?: () => void;
-  /** Función que se ejecuta cuando el botón pierde el foco */
-  onBlur?: () => void;
-  /** Props del tema */
-  themeProps: ThemeProps;
-}
+// Reexportar los tipos para mantener compatibilidad externa
+export type {
+  ButtonSize,
+  ButtonState,
+  ButtonColor,
+  ButtonStatus,
+};
 
 /**
  * Componente de botón cuadrado personalizable con diferentes tamaños, estados y colores.

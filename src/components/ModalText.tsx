@@ -1,19 +1,7 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { ThemeProps } from '../types';
 import { Modal, View, Text, Image, Pressable, StyleSheet, ScrollView } from 'react-native';
-
-
-interface ModalTextProps {
-  isVisible: boolean;
-  onClose: () => void;
-  title: string;
-  body: string;
-  images: { id: string; url: string; quantity: number }[];
-  themeProps: ThemeProps;
-  width?: number;
-  height?: number;
-}
+import { ModalTextProps } from '../types/componentTypes';
 
 export const ModalText: React.FC<ModalTextProps> = ({ 
   isVisible, 

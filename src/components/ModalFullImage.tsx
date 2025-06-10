@@ -1,19 +1,8 @@
 // src/shared-components/reactives/reactivesFiles/ModalFullImage.tsx
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { ThemeProps } from '../types';
-import { Modal, View, Text, Image, Pressable, StyleSheet } from 'react-native';
-
-
-interface ModalFullImageProps {
-  isVisible: boolean;
-  onClose: () => void;
-  imageUrl: string;
-  themeProps: ThemeProps;
-  // Propiedades opcionales para dimensiones
-  width?: number;
-  height?: number;
-}
+import { Modal, View, Image, Pressable, StyleSheet } from 'react-native';
+import { ModalFullImageProps } from '../types/componentTypes';
 
 export const ModalFullImage: React.FC<ModalFullImageProps> = ({ 
   isVisible, 

@@ -1,28 +1,8 @@
 import React from 'react';
-import { StyleProp, TextStyle, ViewStyle, Pressable, Text, View, StyleSheet } from 'react-native';
-import { ThemeProps } from '../types';
-import { Ionicons } from '@expo/vector-icons';    
-
-
-
-interface CustomButtonProps {
-  label: string;
-  onPress: () => void;
-  icon?: {
-    name: keyof typeof Ionicons.glyphMap;
-    size?: number;
-    color?: string;
-    position?: 'left' | 'right';
-  };
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-  backgroundColor?: string;
-  borderColor?: string;
-  textColor?: string;
-  disabled?: boolean;
-  themeProps: ThemeProps;
-  testID?: string;
-}
+import { Pressable, Text, View, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { CustomButtonProps } from '../types/componentTypes';
+import type { ThemeProps } from '../types';
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   label,
