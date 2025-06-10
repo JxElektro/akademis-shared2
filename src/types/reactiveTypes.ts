@@ -189,13 +189,19 @@ export interface Reactive68Props {
 // Estilos para Reactive52
 export interface Reactive52Styles {
   container?: ViewStyle;
+  contentContainer?: ViewStyle;
   questionText?: TextStyle;
+  titleText?: TextStyle;
+  textContainer?: ViewStyle;
   imageContainer?: ViewStyle;
   imageWrapper?: ViewStyle;
   image?: ImageStyle;
   noAlternativesContainer?: ViewStyle;
   noAlternativesText?: TextStyle;
   alternativesContainer?: ViewStyle;
+  alternativeWrapper?: ViewStyle;
+  twoColumnsRow?: ViewStyle;
+  defaultRow?: ViewStyle;
 }
 
 // Props para Reactive52

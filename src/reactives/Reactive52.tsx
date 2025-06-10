@@ -1,6 +1,6 @@
 // src/shared-components/reactives/reactivesFiles/Reactive52.tsx
 import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ViewStyle, Image, TextStyle } from 'react-native';
+import { View, Text, StyleSheet, ViewStyle, Image } from 'react-native';
 import { ReactiveSchema } from '../types/reactiveSchema';
 import { Reactive52Styles } from '../types/reactiveTypes'; // debe traerse desde reactiveTypes
 import AlternativeButton from '../components/AlternativeButton';
@@ -14,33 +14,6 @@ interface MappedImage {
   quantity: number;
 }
 
-// Interfaz de estilos ampliada para soportar personalización completa
-interface Reactive52Styles {
-  // Contenedores principales
-  container?: ViewStyle;
-  contentContainer?: ViewStyle;
-  
-  // Imagen
-  imageContainer?: ViewStyle;
-  imageWrapper?: ViewStyle;
-  image?: any;
-  
-  // Texto
-  titleText?: TextStyle;
-  textContainer?: ViewStyle;
-  questionText?: TextStyle;
-  
-  // Alternativas
-  alternativesContainer?: ViewStyle;
-  alternativeWrapper?: ViewStyle;
-  twoColumnsRow?: ViewStyle;
-  defaultRow?: ViewStyle;
-  
-  // Estado sin alternativas
-  noAlternativesContainer?: ViewStyle;
-  noAlternativesText?: TextStyle;
-}
-
 interface Reactive52Props {
   reactive: ReactiveSchema;
   responseUser: string[];
@@ -48,7 +21,7 @@ interface Reactive52Props {
   userResponseStatus: UserResponseStatus;
   images: MappedImage[];
   themeProps: any;
-  styles?: any;
+  styles?: Reactive52Styles;
   containerStyle?: ViewStyle;
   width?: number;
   height?: number;
