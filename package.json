@@ -1,6 +1,6 @@
 {
   "name": "@developersakademi/akademi-shared",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "license": "0BSD",
   "publishConfig": {
     "registry": "https://us-central1-npm.pkg.dev/akademiapp-backend-qa/akademi-shared/"
