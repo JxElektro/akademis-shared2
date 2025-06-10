@@ -1,7 +1,8 @@
 // src/shared-components/reactives/reactivesFiles/Reactive52.tsx
 import React, { useMemo } from 'react';
 import { View, Text, StyleSheet, ViewStyle, Image, TextStyle } from 'react-native';
-import { ReactiveSchema, ResponseMedia, Reactive52Styles as ImportedReactive52Styles } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { Reactive52Styles } from '../types/reactiveTypes'; // debe traerse desde reactiveTypes
 import AlternativeButton from '../components/AlternativeButton';
 
 // Definición de tipos locales

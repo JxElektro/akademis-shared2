@@ -1,7 +1,7 @@
 // src/components/ui/Card.tsx   
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import type { ThemeProps } from '../types';
+import type { ThemeProps } from '../types/uiTypes';
 import { CardProps, CardContentProps } from '../types/componentTypes';
 import {
   getButtonFeedbackStyle,

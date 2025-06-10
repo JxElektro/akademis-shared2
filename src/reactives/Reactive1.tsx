@@ -5,12 +5,9 @@ import { View, Text, StyleSheet, ViewStyle , TextStyle , ImageStyle} from 'react
 import AlternativeButton from '../components/AlternativeButton';
 
 // Importar interfaces desde el archivo centralizado
-import { 
-  ThemeProps, 
-  DeviceInfo, 
-  ReactiveSchema,
-  Reactive1Styles 
-} from '../types';
+import { Reactive1Styles } from '../types/reactiveTypes';
+import { ReactiveSchema, DeviceInfo } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 
 interface Reactive1Props {
   reactive: ReactiveSchema;

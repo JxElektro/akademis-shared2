@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { ThemeProps } from '.';
+import { ThemeProps } from './uiTypes';
 
 /**
  * Interfaces y tipos compartidos entre los componentes.

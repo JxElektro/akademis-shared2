@@ -1,7 +1,9 @@
 // src/reactives/reactivesFiles/Reactive42.tsx
 import React from 'react';
 import { DraxProvider, DraxView } from 'react-native-drax';
-import { ReactiveSchema, Reactive42Styles, ThemeProps } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive42Styles } from '../types/reactiveTypes'; // debe traerse desde reactiveTypes
 import { View as RNView, Text as RNText, StyleSheet, ViewStyle, ScrollView as RNScrollView } from 'react-native';
 
 // Solución para el conflicto de tipos ReactNode

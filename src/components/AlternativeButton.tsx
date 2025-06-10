@@ -2,7 +2,7 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import { AlternativeButtonProps } from '../types/componentTypes';
-import type { ThemeProps } from '../types';
+import type { ThemeProps } from '../types/uiTypes';
 import {
   getButtonFeedbackStyle,
   getTextFeedbackStyle,
@@ -71,7 +71,7 @@ const createStyles = (theme: ThemeProps): StylesType => {
       paddingHorizontal: theme.spacing[6],
       marginVertical: theme.spacing[1],
       borderWidth: theme.borders.width.thin,
-      borderColor: theme.colors.ui?.button || theme.colors.primary.light,
+      borderColor: theme.colors.primary.main,
       borderRadius: theme.borders.radius.md,
       backgroundColor: theme.colors.neutral.white,
       alignItems: 'center',

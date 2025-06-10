@@ -1,185 +1,6 @@
 import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
-
-
-// Interfaz para propiedades de tema
-export interface ThemeProps {
-  colors: {
-    primary: {
-      main: string;
-      light: string;
-      lighter?: string;
-      dark: string;
-      lightest?: string;
-    };
-    neutral: {
-      white: string;
-      gray100?: string;
-      gray200?: string;
-      gray300?: string;
-      gray400?: string;
-      gray500?: string;
-    };
-    feedback: {
-      success: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-      error: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-      warning?: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-      info?: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-    };
-    ui?: {
-      button: string;
-    };
-    state?: {
-      default: string;
-      selected?: string;
-      focused?: string;
-      disabled?: string;
-      correct?: string;
-      incorrect?: string;
-      pending?: string;
-    };
-  };
-  typography: {
-    fontSize: {
-      base: number;
-      lg: number;
-      xl: number;
-      sm?: number;
-      md?: number;
-    };
-    fontWeight: {
-      semibold: "600" | 600;
-      bold: "700" | 700;
-      normal?: "400" | 400;
-    };
-    fontFamily: string;
-  };
-  spacing: number[];
-  borders: {
-    radius: {
-      lg: number;
-      md: number;
-      sm?: number;
-    };
-    width: {
-      normal: number;
-      thin?: number;
-      medium?: number;
-      thick?: number;
-    };
-  };
-  shadows: {
-    md: any; // Tipo simplificado para sombras
-  };
-  animations: {
-    opacity: {
-      pressed: number;
-      disabled?: number;
-      normal?: number;
-    };
-    scale?: {
-      pressed?: number;
-      normal?: number;
-    };
-  };
-  sizes?: {
-    squareButton?: {
-      small: { height: number };
-      medium: { height: number };
-      large: { height: number };
-    };
-  };
-  // Colores Akademi para compatibilidad
-  AkademiColors?: {
-    azulPrincipal: string;
-    verdeAkademi: string;
-    amarilloAkademi: string;
-    azulClaro: string;
-    rojoAkademi: string;
-    turquesa: string;
-  };
-}
-
-// Interfaz para información del dispositivo
-export interface DeviceInfo {
-  device: 'phone' | 'tablet' | 'desktop';
-}
-
-// Definición de tipos para respuestas multimedia
-export interface ResponseMedia {
-  id: string;
-  quantity: number;
-}
-
-// Esquema para componentes reactivos
-export interface ReactiveSchema {
-  alternatives?: {
-    config?: {
-      content?: Array<{
-        images?: {
-          response?: ResponseMedia[];
-          correctResponse?: ResponseMedia[];
-        };
-        text?: {
-          response?: string[];
-          correctResponse?: string[];
-        };
-        number?: {
-          response?: (string | number)[];
-          correctResponse?: (string | number)[];
-        };
-      }>;
-    };
-  };
-  assignment?: {
-    config?: {
-      content?: Array<{
-        text?: {
-          response?: string[];
-        };
-        images?: {
-          response?: ResponseMedia[];
-        };
-      }>;
-    };
-  };
-  info?: {
-    config?: {
-      content?: Array<{
-        text?: {
-          response?: string[];
-        };
-      }>;
-    };
-  };
-  correctAlternative?: {
-    inputType?: {
-      config?: {
-        content?: Array<{
-          images?: {
-            response?: ResponseMedia[];
-          };
-        }>;
-      };
-    };
-  };
-  // Añadir otras propiedades según sea necesario
-}
+import { ThemeProps } from './uiTypes';
+import { ReactiveSchema, DeviceInfo, ResponseMedia } from './reactiveSchema';
 
 // Base de estilos para todos los reactivos
 export interface BaseReactiveStyles {
@@ -510,6 +331,23 @@ export interface Reactive20Props {
   deviceInfo?: DeviceInfo;
   styles?: Reactive20Styles;
   containerStyle?: ViewStyle;
+}
+
+// Estilos para Reactive40
+export interface Reactive40Styles {
+  container?: ViewStyle;
+  questionContainer?: ViewStyle;
+  questionText?: TextStyle;
+  imageContainer?: ViewStyle;
+  imageWrapper?: ViewStyle;
+  image?: ImageStyle;
+  noAlternativesContainer?: ViewStyle;
+  noAlternativesText?: TextStyle;
+  alternativesContainer?: ViewStyle;
+  twoColumnsRow?: ViewStyle;
+  defaultRow?: ViewStyle;
+  alternativeWrapper?: ViewStyle;
+  alternativeWrapperColumn?: ViewStyle;
 }
 
 export type UserResponseStatus = 'pending' | 'correct' | 'incorrect'; 

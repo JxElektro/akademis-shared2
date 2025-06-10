@@ -1,5 +1,5 @@
 import { ViewStyle, TextStyle } from 'react-native';
-import type { ThemeProps } from '../types';
+import type { ThemeProps } from '../types/uiTypes';
 
 // Tipos de estado de respuesta
 export type ResponseStatus = 'pending' | 'correct' | 'incorrect';
@@ -54,17 +54,20 @@ export const getButtonFeedbackStyle = ({
     }
   }
 
-  // Estado pendiente
+  // Estado pendiente (sin evaluar)
   if (!isSelected) {
+    // Alternativa NO seleccionada
     return {
-      backgroundColor: theme.colors.state?.default || theme.colors.neutral.white,
-      borderColor: theme.colors.ui?.button || theme.colors.primary.light,
+      backgroundColor: theme.colors.primary.lighter,   // Fondo no seleccionado (#CDCFFF)
+      borderColor: theme.colors.primary.main,         // Borde no seleccionado (#2A2870)
+      borderWidth: theme.borders.width.thin,
     } as ViewStyle;
   }
 
+  // Alternativa seleccionada (pero aún pendiente)
   return {
-    backgroundColor: theme.colors.state?.selected || theme.colors.primary.lighter || '#CDCFFF',
-    borderColor: theme.colors.primary.main,
+    backgroundColor: theme.colors.primary.light,      // Fondo seleccionado (#8287FF)
+    borderColor: theme.colors.primary.lightest,       // Borde seleccionado (#F4F4FE)
     borderWidth: theme.borders.width.normal,
   } as ViewStyle;
 };
@@ -106,13 +109,16 @@ export const getTextFeedbackStyle = ({
     }
   }
 
+  // Estado pendiente
   if (!isSelected) {
+    // Texto no seleccionado
     return {
-      color: theme.colors.primary.dark,
+      color: theme.colors.primary.main, // #2A2870
     } as TextStyle;
   }
 
+  // Texto seleccionado
   return {
-    color: theme.colors.primary.dark,
+    color: theme.colors.primary.lightest, // #F4F4FE
   } as TextStyle;
 }; 

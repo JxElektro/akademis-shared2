@@ -2,13 +2,9 @@ import React, { useMemo, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 
 // Importar interfaces desde el archivo centralizado
-import { 
-  ThemeProps, 
-  DeviceInfo, 
-  ReactiveSchema,
-  Reactive12Styles 
-} from '../types';
-
+import { Reactive12Styles } from '../types/reactiveTypes';
+import { ReactiveSchema, DeviceInfo } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 
 // Interfaces para estilos personalizables
 interface DraggableProps {

@@ -1,7 +1,7 @@
 // src/shared-components/ui/SquareButton.tsx
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, TextStyle, ViewStyle } from 'react-native';
-import type { ThemeProps } from '../types';
+import type { ThemeProps } from '../types/uiTypes';
 import {
   ButtonSize,
   ButtonState,
@@ -75,7 +75,7 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
 
   // Definir el color del texto basado en la prop `color`
   const getTextColor = (colorType: ButtonColor): string => {
-    const defaultColor = themeProps.colors.primary.dark;
+    const defaultColor = themeProps.colors.primary.main;
     const colors = themeProps.colors as any;
 
     switch (colorType) {
@@ -172,9 +172,9 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
         };
       case 'selected':
         return {
-          backgroundColor: themeProps.colors.primary.lighter || themeProps.colors.primary.light,
+          backgroundColor: themeProps.colors.primary.light,
           borderWidth: themeProps.borders.width.normal,
-          borderColor: themeProps.colors.primary.light,
+          borderColor: themeProps.colors.primary.lightest,
         };
       case 'unselected':
         return {

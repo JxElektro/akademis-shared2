@@ -1,9 +1,10 @@
 // src/shared-components/reactives/reactivesFiles/Reactive70.tsx
 import React from 'react';
 import { SquareButton, ButtonState, ButtonStatus } from '../components/SquareButton';
-import { ReactiveSchema, ThemeProps, Reactive70Styles } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive70Styles } from '../types/reactiveTypes';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-
 
 interface Reactive70Props {
   reactive: ReactiveSchema;

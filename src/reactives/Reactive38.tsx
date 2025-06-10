@@ -2,7 +2,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView, Platform } from 'react-native';
 import { DraxProvider, DraxView } from 'react-native-drax';
-import { ReactiveSchema, Reactive38Styles, ThemeProps } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive38Styles } from '../types/reactiveTypes';
 
 interface MappedImage {
   id: string;

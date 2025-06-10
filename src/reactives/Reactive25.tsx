@@ -1,8 +1,10 @@
 // src/shared-components/reactives/reactivesFiles/Reactive25.tsx
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView } from 'react-native';
-import { ReactiveSchema, ResponseMedia, Reactive25Styles, ThemeProps } from '../types';
-import { Card } from '../components/Card';
+import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive25Styles } from '../types/reactiveTypes';
+import { Card } from '../components/Card';    
 
 const IMAGE_MARGIN = 10;
 

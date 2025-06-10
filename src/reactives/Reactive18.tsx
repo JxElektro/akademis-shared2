@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { SquareButton } from '../components/SquareButton';
-import { ReactiveSchema, ThemeProps } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
 // Interfaces para estilos personalizables

@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { CustomButtonProps } from '../types/componentTypes';
-import type { ThemeProps } from '../types';
+import type { ThemeProps } from '../types/uiTypes';
 import {
   getButtonFeedbackStyle,
   getTextFeedbackStyle,

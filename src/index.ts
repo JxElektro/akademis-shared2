@@ -19,5 +19,5 @@ export { Reactive70 } from './reactives/Reactive70';
 export { Reactive71 } from './reactives/Reactive71';
 
 
-export type { ThemeProps } from './types/index';
+export type { ThemeProps } from './types/uiTypes';
 

@@ -5,11 +5,10 @@ import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView } from 
 
 // Importar interfaces desde el archivo centralizado
 import { 
-  ThemeProps, 
-  ResponseMedia, 
-  ReactiveSchema,
   Reactive7Styles 
-} from '../types';
+} from '../types/reactiveTypes';
+import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 
 // Valores fijos para el diseño del componente
 const NUM_COLUMNS = 3;

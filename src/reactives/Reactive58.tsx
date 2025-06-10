@@ -1,10 +1,13 @@
 // src/shared-components/reactives/reactivesFiles/Reactive58.tsx
-import { ReactiveSchema, ResponseMedia, ThemeProps } from '../types';
+
 import { ModalText } from '../components/ModalText';
 import CustomButton from '../components/CustomButton';
 import AlternativeButton from '../components/AlternativeButton';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { useState } from 'react';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { ResponseMedia } from '../types/reactiveSchema';
 
 interface MappedImage {
   id: string;

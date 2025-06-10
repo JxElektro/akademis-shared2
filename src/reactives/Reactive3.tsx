@@ -5,12 +5,11 @@ import React, { useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView } from 'react-native';
 
 // Importar interfaces desde el archivo centralizado
-import { 
-  ThemeProps, 
-  ResponseMedia, 
-  ReactiveSchema,
+import {
   Reactive3Styles 
-} from '../types';
+} from '../types/reactiveTypes';
+import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 
 interface MappedImage {
   id: string;
