@@ -1,0 +1,70 @@
+# Dependencias
+node_modules/
+
+# Salida de compilación
+/dist/
+
+# Archivos de sistema
+.DS_Store
+
+# Archivos de logs
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+*.log
+
+# Archivos de configuración de entorno
+.env
+.env.*
+
+# Archivos de lock
+package-lock.json
+yarn.lock
+
+# Cobertura de tests
+coverage/
+
+# Storybook
+.storybook/
+storybook-static/
+
+# Archivos de pruebas y mocks
+__tests__/
+__mocks__/
+test/
+tests/
+
+# Otros directorios y archivos comunes
+assets/
+docs/
+.expo/
+.git/
+
+# Archivos de configuración y editor
+*.sublime*
+*.vscode*
+.idea/
+.editorconfig
+
+# Archivos de configuración de herramientas
+.eslintrc*
+.prettierrc*
+.travis.yml
+.circleci/
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Archivos de Storybook y pruebas
+*.stories.*
+**/stories
+**/storybook
+*.test.*
+*.spec.*
+*.mock.*
+
+# Ignorar el propio archivo .gitignore 
+
+node_modules
+node_modules_backup/

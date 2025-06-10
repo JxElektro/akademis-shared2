@@ -1,0 +1,43 @@
+# Directorios
+node_modules
+src
+assets
+.git
+.expo
+.storybook
+storybook
+coverage
+__tests__
+__mocks__
+test
+tests
+docs
+
+# Archivos de configuración
+*.log
+.DS_Store
+.gitignore
+package-lock.json
+jest.config.js
+jest.setup.js
+babel.config.js
+tsconfig.json
+.eslintrc*
+.prettierrc*
+.editorconfig
+.travis.yml
+.circleci
+
+# App específicos
+App.tsx
+index.ts
+app.json
+
+# Patrones de archivos 
+*.stories.*
+**/stories
+**/storybook
+*.test.*
+*.spec.*
+*.mock.*  
+.npmrc
