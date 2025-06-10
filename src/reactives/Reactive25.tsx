@@ -3,30 +3,10 @@ import React from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView } from 'react-native';
 import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
-import { Reactive25Styles } from '../types/reactiveTypes';
+import { Reactive25Styles, Reactive25Props, MappedImage } from '../types/reactiveTypes';
 import { Card } from '../components/Card';    
 
 const IMAGE_MARGIN = 10;
-
-interface MappedImage {
-  id: string;
-  label: string;
-  url: string;
-  quantity?: number;
-}
-
-interface Reactive25Props {
-  reactive: ReactiveSchema;
-  responseUser: any[];
-  onResponseChange: (newResponse: any[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  images: MappedImage[];
-  themeProps: ThemeProps;
-  styles?: Reactive25Styles;
-  containerStyle?: ViewStyle;
-  width?: number;
-  height?: number;
-}
 
 export const Reactive25: React.FC<Reactive25Props> = ({
   reactive,

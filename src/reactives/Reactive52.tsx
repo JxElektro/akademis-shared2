@@ -2,31 +2,11 @@
 import React, { useMemo } from 'react';
 import { View, Text, StyleSheet, ViewStyle, Image } from 'react-native';
 import { ReactiveSchema } from '../types/reactiveSchema';
-import { Reactive52Styles } from '../types/reactiveTypes'; // debe traerse desde reactiveTypes
+import { Reactive52Styles, Reactive52Props, MappedImage } from '../types/reactiveTypes';
 import AlternativeButton from '../components/AlternativeButton';
 
 // Definición de tipos locales
 type UserResponseStatus = 'pending' | 'correct' | 'incorrect';
-
-interface MappedImage {
-  id: string;
-  url: string;
-  quantity: number;
-}
-
-interface Reactive52Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: UserResponseStatus;
-  images: MappedImage[];
-  themeProps: any;
-  styles?: Reactive52Styles;
-  containerStyle?: ViewStyle;
-  width?: number;
-  height?: number;
-  resetTrigger?: number;
-}
 
 export const Reactive52: React.FC<Reactive52Props> = ({
   reactive,

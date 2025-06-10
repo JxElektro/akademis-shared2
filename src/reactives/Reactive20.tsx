@@ -4,76 +4,9 @@ import { ImageStyle, TextStyle, ViewStyle, Image, View, Text, StyleSheet } from 
 import SquareButton from '../components/SquareButton';
 import { ReactiveSchema } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
-
-// Interfaces para estilos personalizables
-export interface Reactive20Styles {
-  container?: ViewStyle;
-  titleText?: TextStyle;
-  fullOperationContainer?: ViewStyle;
-  operatorContainer?: ViewStyle;
-  operatorText?: TextStyle;
-  card?: ViewStyle;
-  imagesGrid?: ViewStyle;
-  imageWrapper?: ViewStyle;
-  image?: ImageStyle;
-  equalSign?: TextStyle;
-  touchableInput?: ViewStyle;
-  inputContainerFocused?: ViewStyle;
-  inputContainerCorrect?: ViewStyle;
-  inputContainerIncorrect?: ViewStyle;
-  row?: ViewStyle; // Añadir soporte para estilo row de ReactiveStyles
-}
+import { Reactive20Styles, Reactive20Props, MappedImage, ImageCardProps, ImageResponse, ReactiveContentWithImages } from '../types/reactiveTypes';
 
 const IMAGE_MARGIN = 4;
-
-// Interfaces requeridas para las imágenes
-interface MappedImage {
-  id: string;
-  label: string;
-  url: string;
-  quantity: number;
-}
-
-interface ImageResponse {
-  id: string;
-  quantity: number;
-}
-
-// Interfaz que extiende para incluir campos de imágenes y garantizar compatibilidad
-interface ReactiveContentWithImages {
-  text?: { response?: string[] };
-  images?: { response?: ImageResponse[] };
-}
-
-export interface Reactive20Props {
-  reactive: ReactiveSchema;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  keyValue: string;
-  setKey: (key: string) => void;
-  inputId: string;
-  isFocused: boolean;
-  setFocusId: (id: string | null) => void;
-  // Props para imágenes (forma compatible con Reactive7)
-  images?: MappedImage[];
-  // Props de tema
-  themeProps: ThemeProps;
-  // Props de estilo
-  styles?: Reactive20Styles;
-  containerStyle?: ViewStyle;
-  // Props para dimensiones
-  width?: number;
-  height?: number;
-}
-
-interface ImageCardProps {
-  img: { name: string; url: string };
-  quantity: number;
-  cardStyle?: ViewStyle;
-  imagesGridStyle?: ViewStyle;
-  imageWrapperStyle?: ViewStyle;
-  imageStyle?: ImageStyle;
-  theme: ThemeProps;
-}
 
 const createStyles = (theme: ThemeProps) => StyleSheet.create({
   container: {

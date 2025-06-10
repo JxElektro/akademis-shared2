@@ -4,23 +4,10 @@ import React, { useMemo } from 'react';
 import { View, Text, StyleSheet, ViewStyle , TextStyle , ImageStyle} from 'react-native'; 
 import AlternativeButton from '../components/AlternativeButton';
 
-// Importar interfaces desde el archivo centralizado
-import { Reactive1Styles } from '../types/reactiveTypes';
+
+import { Reactive1Styles, Reactive1Props } from '../types/reactiveTypes';
 import { ReactiveSchema, DeviceInfo } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
-
-interface Reactive1Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  // Props de tema y dispositivo
-  themeProps: ThemeProps;
-  deviceInfo: DeviceInfo;
-  // Props de estilo
-  styles?: Reactive1Styles;
-  containerStyle?: ViewStyle;
-}
 
 export const Reactive1: React.FC<Reactive1Props> = ({
   reactive,

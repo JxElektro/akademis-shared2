@@ -1,19 +1,10 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 
-// Importar interfaces desde el archivo centralizado
-import { Reactive12Styles } from '../types/reactiveTypes';
+
+import { Reactive12Styles, Reactive12Props, DraggableProps, DropZoneProps } from '../types/reactiveTypes';
 import { ReactiveSchema, DeviceInfo } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
-
-// Interfaces para estilos personalizables
-interface DraggableProps {
-  value: string;
-  onDragStart: (value: string) => void;
-  disabled?: boolean;
-  styles?: Reactive12Styles;
-  themeProps: ThemeProps;
-}
 
 // Componente arrastrable usando drag & drop nativo de HTML (específico para web)
 const Draggable: React.FC<DraggableProps> = ({ 
@@ -131,19 +122,6 @@ const Draggable: React.FC<DraggableProps> = ({
     );
   }
 };
-
-interface DropZoneProps {
-  index: number;
-  value: string | null;
-  onDrop: (index: number) => void;
-  onDragOver: () => void;
-  isCorrect?: boolean;
-  isIncorrect?: boolean;
-  correctValue?: string;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  styles?: Reactive12Styles;
-  themeProps: ThemeProps;
-}
 
 // Zona de drop usando drag & drop nativo de HTML (específico para web)
 const DropZone: React.FC<DropZoneProps> = ({ 
@@ -306,20 +284,6 @@ const DropZone: React.FC<DropZoneProps> = ({
     );
   }
 };
-
-interface Reactive12Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus?: 'pending' | 'correct' | 'incorrect';
-  resetTrigger?: number;
-  onCorrectOrderChange?: (correctOrder: string[]) => void;
-  // Props de tema
-  themeProps: ThemeProps;
-  // Props de estilo
-  styles?: Reactive12Styles;
-  containerStyle?: ViewStyle;
-}
 
 export const Reactive12: React.FC<Reactive12Props> = ({
   reactive,

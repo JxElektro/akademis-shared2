@@ -3,26 +3,8 @@ import React, { useMemo } from 'react';
 import { View, Text, StyleSheet, ViewStyle, Image } from 'react-native';
 import { ReactiveSchema } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
-import { Reactive40Styles } from '../types/reactiveTypes'; // debe traerse desde reactiveTypes
+import { Reactive40Styles, Reactive40Props, MappedImage } from '../types/reactiveTypes';
 import AlternativeButton from '../components/AlternativeButton';
-
-interface MappedImage {
-  id: string;
-  url: string;
-  quantity: number;
-}
-
-interface Reactive40Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  images: MappedImage[];
-  themeProps: ThemeProps;
-  styles?: Reactive40Styles;
-  containerStyle?: ViewStyle;
-  resetTrigger?: number;
-}
 
 export const Reactive40: React.FC<Reactive40Props> = ({
   reactive,

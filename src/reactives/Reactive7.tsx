@@ -2,10 +2,10 @@
 
 import React, { useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView } from 'react-native';
-
-// Importar interfaces desde el archivo centralizado
 import { 
-  Reactive7Styles 
+  Reactive7Styles,
+  Reactive7Props,
+  MappedImage,
 } from '../types/reactiveTypes';
 import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
@@ -14,29 +14,6 @@ import { ThemeProps } from '../types/uiTypes';
 const NUM_COLUMNS = 3;
 const MAX_ROWS = 3;
 const IMAGE_MARGIN = 4;
-
-interface MappedImage {
-  id: string;
-  label: string;
-  url: string;
-  quantity: number;
-}
-
-interface Reactive7Props {
-  reactive: ReactiveSchema;
-  responseUser: ResponseMedia[];
-  onResponseChange: (updatedResponse: ResponseMedia[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  images: MappedImage[];
-  // Props de tema
-  themeProps: ThemeProps;
-  // Props de estilo
-  styles?: Reactive7Styles;
-  containerStyle?: ViewStyle;
-  // Props para dimensiones
-  width?: number;
-  height?: number;
-}
 
 export const Reactive7: React.FC<Reactive7Props> = ({
   reactive,

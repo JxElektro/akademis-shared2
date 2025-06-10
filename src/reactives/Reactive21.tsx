@@ -4,39 +4,8 @@ import React from 'react';
 import { ImageStyle, TextStyle, ViewStyle, Image, ActivityIndicator, View, Text, Pressable, StyleSheet } from 'react-native';
 import { SquareButton } from '../components/SquareButton';
 import { ReactiveSchema } from '../types/reactiveSchema';
-import { ThemeProps } from '../types/uiTypes'; 
-// debo trraer esta interface desde reactiveTypes
-
-
-// Interfaces para estilos personalizables
-export interface Reactive21Styles {
-  container?: ViewStyle;
-  titleText?: TextStyle;
-  imagesContainer?: ViewStyle;
-  imageWrapper?: ViewStyle;
-  image?: ImageStyle;
-  operationContainer?: ViewStyle;
-  operationSymbol?: TextStyle;
-  inputButton?: ViewStyle;
-  inputFocused?: ViewStyle;
-  imageCircle?: ViewStyle;
-  feedbackContainer?: ViewStyle;
-  feedbackText?: TextStyle;
-}
-
-export interface Reactive21Props {
-  reactive: any; // Puedes usar el tipo ReactiveSchema si lo tienes definido
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  numericResponse: { first: string; second: string; result: string };
-  focusedInput: 'first' | 'second' | 'result' | null;
-  onNumericChange: (newResponse: { first: string; second: string; result: string }) => void;
-  setFocusedInput: (field: 'first' | 'second' | 'result' | null) => void;
-  imageUrl: string;
-  themeProps: ThemeProps;
-  styles?: Reactive21Styles;
-  containerStyle?: ViewStyle;
-  screenWidth?: number;
-}
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive21Styles, Reactive21Props } from '../types/reactiveTypes';
 
 const MAX_COLUMNS = 11; // Se esperan 11 imágenes por fila (si hay al menos 11 imágenes)
 const IMAGE_MARGIN = 8; // Margen entre imágenes

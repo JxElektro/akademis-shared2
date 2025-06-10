@@ -3,10 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import type { ThemeProps } from '../types/uiTypes';
 import { defaultThemeProps } from '../theme/defaultProps';
-
-interface NoReactiveProps {
-  themeProps?: ThemeProps;
-}
+import { NoReactiveProps } from '../types/reactiveTypes';
 
 export const NoReactive: React.FC<NoReactiveProps> = ({ themeProps }) => {
   const appliedTheme = themeProps || defaultThemeProps;

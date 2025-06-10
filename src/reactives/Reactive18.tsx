@@ -5,32 +5,7 @@ import { SquareButton } from '../components/SquareButton';
 import { ReactiveSchema } from '../types/reactiveSchema';
 import { ThemeProps } from '../types/uiTypes';
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-
-// Interfaces para estilos personalizables
-export interface Reactive18Styles {
-  container?: ViewStyle;
-  titleText?: TextStyle;
-  operationContainer?: ViewStyle;
-  operationText?: TextStyle;
-  touchableInput?: ViewStyle;
-  inputContainerFocused?: ViewStyle;
-  errorText?: TextStyle;
-}
-
-interface Reactive18Props {
-  reactive: ReactiveSchema;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  keyValue: string;
-  setKey: (key: string) => void;
-  inputId: string;
-  isFocused: boolean;
-  setFocusId: (id: string | null) => void;
-  // Props de tema
-  themeProps: ThemeProps;
-  // Nuevas props de estilo
-  styles?: Reactive18Styles;
-  containerStyle?: ViewStyle;
-}
+import { Reactive18Styles, Reactive18Props } from '../types/reactiveTypes';
 
 type SquareButtonState =
   | 'border'
