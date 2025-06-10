@@ -388,7 +388,7 @@ export interface MappedImage {
   id: string;
   label: string;
   url: string;
-  quantity?: number;
+  quantity: number;
 }
 
 // ===== Props para Reactive1 =====

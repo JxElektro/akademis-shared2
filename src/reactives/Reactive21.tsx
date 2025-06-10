@@ -33,8 +33,9 @@ export const Reactive21: React.FC<Reactive21Props> = ({
     reactive.assignment?.config?.content?.[0]?.text?.response?.[0] || 'Pregunta sin título';
 
   // Obtener el total de imágenes desde la configuración (índice 0 del inputType)
-  const defaultTotalStr =
-    reactive.correctAlternative?.inputType?.config?.content?.[0]?.number?.response?.[0];
+  const defaultTotalStr = (
+    (reactive.correctAlternative?.inputType?.config?.content as any)?.[0]?.number?.response?.[0]
+  ) as string | undefined;
   const defaultTotal = parseInt(defaultTotalStr);
   // Las imágenes se renderizan siempre según el valor configurado.
   const totalImages = defaultTotal;
