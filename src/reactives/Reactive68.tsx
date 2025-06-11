@@ -2,9 +2,11 @@
 import React from 'react';
 import { useMemo } from 'react';
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import { ReactiveSchema, ThemeProps, Reactive68Styles } from '../types';
-import AlternativeButton from '../components/AlternativeButton';
 
+import AlternativeButton from '../components/AlternativeButton';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive68Styles, Reactive68Props } from '../types/reactiveTypes';
 
 
 const TextContent: React.FC<{ text: string; wordToUnderline?: string; fontSize: number; textStyle?: TextStyle; underlinedTextStyle?: TextStyle; containerStyle?: ViewStyle; defaultStyles: any }> = ({ 
@@ -49,19 +51,6 @@ const TextContent: React.FC<{ text: string; wordToUnderline?: string; fontSize: 
     </View>
   );
 };
-
-interface Reactive68Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (updatedResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  resetTrigger?: number;
-  themeProps: ThemeProps;
-  styles?: Reactive68Styles;
-  containerStyle?: ViewStyle;
-  width?: number;
-  height?: number;
-}
 
 export const Reactive68: React.FC<Reactive68Props> = ({
   reactive,

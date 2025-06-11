@@ -1,58 +1,12 @@
 // src/shared-components/reactives/reactivesFiles/Reactive52.tsx
 import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ViewStyle, Image, TextStyle } from 'react-native';
-import { ReactiveSchema, ResponseMedia, Reactive52Styles as ImportedReactive52Styles } from '../types';
+import { View, Text, StyleSheet, ViewStyle, Image } from 'react-native';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { Reactive52Styles, Reactive52Props, MappedImage } from '../types/reactiveTypes';
 import AlternativeButton from '../components/AlternativeButton';
 
 // Definición de tipos locales
 type UserResponseStatus = 'pending' | 'correct' | 'incorrect';
-
-interface MappedImage {
-  id: string;
-  url: string;
-  quantity: number;
-}
-
-// Interfaz de estilos ampliada para soportar personalización completa
-interface Reactive52Styles {
-  // Contenedores principales
-  container?: ViewStyle;
-  contentContainer?: ViewStyle;
-  
-  // Imagen
-  imageContainer?: ViewStyle;
-  imageWrapper?: ViewStyle;
-  image?: any;
-  
-  // Texto
-  titleText?: TextStyle;
-  textContainer?: ViewStyle;
-  questionText?: TextStyle;
-  
-  // Alternativas
-  alternativesContainer?: ViewStyle;
-  alternativeWrapper?: ViewStyle;
-  twoColumnsRow?: ViewStyle;
-  defaultRow?: ViewStyle;
-  
-  // Estado sin alternativas
-  noAlternativesContainer?: ViewStyle;
-  noAlternativesText?: TextStyle;
-}
-
-interface Reactive52Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: UserResponseStatus;
-  images: MappedImage[];
-  themeProps: any;
-  styles?: any;
-  containerStyle?: ViewStyle;
-  width?: number;
-  height?: number;
-  resetTrigger?: number;
-}
 
 export const Reactive52: React.FC<Reactive52Props> = ({
   reactive,

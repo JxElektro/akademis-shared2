@@ -1,25 +1,13 @@
 // src/shared-components/reactives/reactivesFiles/Reactive58.tsx
-import { ReactiveSchema, ResponseMedia, ThemeProps } from '../types';
+
 import { ModalText } from '../components/ModalText';
 import CustomButton from '../components/CustomButton';
 import AlternativeButton from '../components/AlternativeButton';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { useState } from 'react';
-
-interface MappedImage {
-  id: string;
-  url: string;
-  quantity: number;
-}
-
-interface Reactive58Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  images: MappedImage[];
-  themeProps: ThemeProps;
-}
+import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive58Props, MappedImage } from '../types/reactiveTypes';
 
 export const Reactive58: React.FC<Reactive58Props> = ({
   reactive,

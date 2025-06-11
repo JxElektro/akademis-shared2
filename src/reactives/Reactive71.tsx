@@ -1,29 +1,12 @@
 // src/shared-components/reactives/reactivesFiles/Reactive71.tsx
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { ReactiveSchema, ResponseMedia, ThemeProps, Reactive71Styles } from '../types';
+import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive71Styles, Reactive71Props, MappedImage } from '../types/reactiveTypes';
 import { ModalFullImage } from '../components/ModalFullImage';
 import CustomButton from '../components/CustomButton';
 import AlternativeButton from '../components/AlternativeButton';
-
-
-
-interface MappedImage {
-  id: string;
-  url: string;
-  quantity: number;
-}
-
-interface Reactive71Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (updatedResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  images: MappedImage[];
-  themeProps: ThemeProps;
-  styles?: any;
-  containerStyle?: ViewStyle;
-}
 
 export const Reactive71: React.FC<Reactive71Props> = ({
   reactive,

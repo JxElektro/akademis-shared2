@@ -3,24 +3,10 @@ import React from 'react';
 import { View, Text, StyleSheet, ViewStyle , TextStyle , ImageStyle} from 'react-native';
 import AlternativeButton from '../components/AlternativeButton';
 
-// Importar interfaces desde el archivo centralizado
-import { 
-  ThemeProps, 
-  ReactiveSchema,
-  Reactive2Styles
-} from '../types';
 
-interface Reactive2Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  // Props de tema
-  themeProps: ThemeProps;
-  // Props de estilo
-  styles?: Reactive2Styles;
-  containerStyle?: ViewStyle;
-}
+import { Reactive2Styles, Reactive2Props } from '../types/reactiveTypes';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 
 export const Reactive2: React.FC<Reactive2Props> = ({
   reactive,

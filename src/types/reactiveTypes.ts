@@ -1,185 +1,6 @@
 import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
-
-
-// Interfaz para propiedades de tema
-export interface ThemeProps {
-  colors: {
-    primary: {
-      main: string;
-      light: string;
-      lighter?: string;
-      dark: string;
-      lightest?: string;
-    };
-    neutral: {
-      white: string;
-      gray100?: string;
-      gray200?: string;
-      gray300?: string;
-      gray400?: string;
-      gray500?: string;
-    };
-    feedback: {
-      success: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-      error: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-      warning?: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-      info?: {
-        main: string;
-        light: string;
-        dark: string;
-      };
-    };
-    ui?: {
-      button: string;
-    };
-    state?: {
-      default: string;
-      selected?: string;
-      focused?: string;
-      disabled?: string;
-      correct?: string;
-      incorrect?: string;
-      pending?: string;
-    };
-  };
-  typography: {
-    fontSize: {
-      base: number;
-      lg: number;
-      xl: number;
-      sm?: number;
-      md?: number;
-    };
-    fontWeight: {
-      semibold: "600" | 600;
-      bold: "700" | 700;
-      normal?: "400" | 400;
-    };
-    fontFamily: string;
-  };
-  spacing: number[];
-  borders: {
-    radius: {
-      lg: number;
-      md: number;
-      sm?: number;
-    };
-    width: {
-      normal: number;
-      thin?: number;
-      medium?: number;
-      thick?: number;
-    };
-  };
-  shadows: {
-    md: any; // Tipo simplificado para sombras
-  };
-  animations: {
-    opacity: {
-      pressed: number;
-      disabled?: number;
-      normal?: number;
-    };
-    scale?: {
-      pressed?: number;
-      normal?: number;
-    };
-  };
-  sizes?: {
-    squareButton?: {
-      small: { height: number };
-      medium: { height: number };
-      large: { height: number };
-    };
-  };
-  // Colores Akademi para compatibilidad
-  AkademiColors?: {
-    azulPrincipal: string;
-    verdeAkademi: string;
-    amarilloAkademi: string;
-    azulClaro: string;
-    rojoAkademi: string;
-    turquesa: string;
-  };
-}
-
-// Interfaz para información del dispositivo
-export interface DeviceInfo {
-  device: 'phone' | 'tablet' | 'desktop';
-}
-
-// Definición de tipos para respuestas multimedia
-export interface ResponseMedia {
-  id: string;
-  quantity: number;
-}
-
-// Esquema para componentes reactivos
-export interface ReactiveSchema {
-  alternatives?: {
-    config?: {
-      content?: Array<{
-        images?: {
-          response?: ResponseMedia[];
-          correctResponse?: ResponseMedia[];
-        };
-        text?: {
-          response?: string[];
-          correctResponse?: string[];
-        };
-        number?: {
-          response?: (string | number)[];
-          correctResponse?: (string | number)[];
-        };
-      }>;
-    };
-  };
-  assignment?: {
-    config?: {
-      content?: Array<{
-        text?: {
-          response?: string[];
-        };
-        images?: {
-          response?: ResponseMedia[];
-        };
-      }>;
-    };
-  };
-  info?: {
-    config?: {
-      content?: Array<{
-        text?: {
-          response?: string[];
-        };
-      }>;
-    };
-  };
-  correctAlternative?: {
-    inputType?: {
-      config?: {
-        content?: Array<{
-          images?: {
-            response?: ResponseMedia[];
-          };
-        }>;
-      };
-    };
-  };
-  // Añadir otras propiedades según sea necesario
-}
+import { ThemeProps } from './uiTypes';
+import { ReactiveSchema, DeviceInfo, ResponseMedia } from './reactiveSchema';
 
 // Base de estilos para todos los reactivos
 export interface BaseReactiveStyles {
@@ -295,6 +116,8 @@ export interface Reactive71Props {
   responseUser: string[];
   onResponseChange: (newResponse: string[]) => void;
   userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  images: MappedImage[];
+  themeProps: ThemeProps;
   styles?: any; // Puede ser Reactive71Styles si se define, o usar any temporalmente
   containerStyle?: ViewStyle;
 }
@@ -327,6 +150,7 @@ export interface Reactive70Props {
   inputId: string;
   isFocused: boolean;
   setFocusId: (id: string | null) => void;
+  themeProps: ThemeProps;
   styles?: any; // Puede ser Reactive70Styles si se define, o usar any temporalmente
   containerStyle?: ViewStyle;
 }
@@ -361,20 +185,29 @@ export interface Reactive68Props {
   onResponseChange: (newResponse: string[]) => void;
   userResponseStatus: 'pending' | 'correct' | 'incorrect';
   resetTrigger?: number;
+  themeProps: ThemeProps;
   styles?: Reactive68Styles;
   containerStyle?: ViewStyle;
+  width?: number;
+  height?: number;
 }
 
 // Estilos para Reactive52
 export interface Reactive52Styles {
   container?: ViewStyle;
+  contentContainer?: ViewStyle;
   questionText?: TextStyle;
+  titleText?: TextStyle;
+  textContainer?: ViewStyle;
   imageContainer?: ViewStyle;
   imageWrapper?: ViewStyle;
   image?: ImageStyle;
   noAlternativesContainer?: ViewStyle;
   noAlternativesText?: TextStyle;
   alternativesContainer?: ViewStyle;
+  alternativeWrapper?: ViewStyle;
+  twoColumnsRow?: ViewStyle;
+  defaultRow?: ViewStyle;
 }
 
 // Props para Reactive52
@@ -383,8 +216,13 @@ export interface Reactive52Props {
   responseUser: string[];
   onResponseChange: (newResponse: string[]) => void;
   userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  images: MappedImage[];
+  themeProps: ThemeProps;
   styles?: Reactive52Styles;
   containerStyle?: ViewStyle;
+  width?: number;
+  height?: number;
+  resetTrigger?: number;
 }
 
 // Estilos para Reactive42
@@ -419,8 +257,10 @@ export interface Reactive42Props {
   onResponseChange: (updatedResponse: string[]) => void;
   userResponseStatus: 'pending' | 'correct' | 'incorrect';
   resetTrigger?: number;
+  themeProps: ThemeProps;
   styles?: Reactive42Styles;
   containerStyle?: ViewStyle;
+  screenWidth?: number;
 }
 
 // Estilos para Reactive38
@@ -446,12 +286,15 @@ export interface Reactive38Styles {
 // Props para Reactive38
 export interface Reactive38Props {
   reactive: ReactiveSchema;
+  images: MappedImage[];
   responseUser: string[];
   onResponseChange: (updatedResponse: string[]) => void;
   userResponseStatus: 'pending' | 'correct' | 'incorrect';
   resetTrigger?: number;
+  themeProps: ThemeProps;
   styles?: Reactive38Styles;
   containerStyle?: ViewStyle;
+  screenWidth?: number;
 }
 
 // Estilos para Reactive25
@@ -475,8 +318,12 @@ export interface Reactive25Props {
   responseUser: ResponseMedia[];
   onResponseChange: (updatedResponse: ResponseMedia[]) => void;
   userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  images: MappedImage[];
+  themeProps: ThemeProps;
   styles?: Reactive25Styles;
   containerStyle?: ViewStyle;
+  width?: number;
+  height?: number;
 }
 
 // Estilos para Reactive20
@@ -494,6 +341,9 @@ export interface Reactive20Styles {
   equalSign?: TextStyle;
   touchableInput?: ViewStyle;
   inputContainerFocused?: ViewStyle;
+  inputContainerCorrect?: ViewStyle;
+  inputContainerIncorrect?: ViewStyle;
+  row?: ViewStyle;
 }
 
 // Props para Reactive20
@@ -505,11 +355,240 @@ export interface Reactive20Props {
   inputId: string;
   isFocused: boolean;
   setFocusId: (id: string | null) => void;
-  images?: any[]; // MappedImage[] pero puede variar
-  themeProps?: ThemeProps;
+  images?: MappedImage[];
+  themeProps: ThemeProps;
   deviceInfo?: DeviceInfo;
   styles?: Reactive20Styles;
   containerStyle?: ViewStyle;
+  width?: number;
+  height?: number;
 }
 
-export type UserResponseStatus = 'pending' | 'correct' | 'incorrect'; 
+// Estilos para Reactive40
+export interface Reactive40Styles {
+  container?: ViewStyle;
+  questionContainer?: ViewStyle;
+  questionText?: TextStyle;
+  imageContainer?: ViewStyle;
+  imageWrapper?: ViewStyle;
+  image?: ImageStyle;
+  noAlternativesContainer?: ViewStyle;
+  noAlternativesText?: TextStyle;
+  alternativesContainer?: ViewStyle;
+  twoColumnsRow?: ViewStyle;
+  defaultRow?: ViewStyle;
+  alternativeWrapper?: ViewStyle;
+  alternativeWrapperColumn?: ViewStyle;
+}
+
+export type UserResponseStatus = 'pending' | 'correct' | 'incorrect';
+
+// ===== Tipos utilitarios comunes =====
+export interface MappedImage {
+  id: string;
+  label: string;
+  url: string;
+  quantity: number;
+}
+
+// ===== Props para Reactive1 =====
+export interface Reactive1Props {
+  reactive: ReactiveSchema;
+  responseUser: string[];
+  onResponseChange: (newResponse: string[]) => void;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  themeProps: ThemeProps;
+  deviceInfo: DeviceInfo;
+  styles?: Reactive1Styles;
+  containerStyle?: ViewStyle;
+}
+
+// ===== Props para Reactive2 =====
+export interface Reactive2Props {
+  reactive: ReactiveSchema;
+  responseUser: string[];
+  onResponseChange: (newResponse: string[]) => void;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  themeProps: ThemeProps;
+  styles?: Reactive2Styles;
+  containerStyle?: ViewStyle;
+}
+
+// ===== Props para Reactive3 =====
+export interface Reactive3Props {
+  reactive: ReactiveSchema;
+  responseUser: ResponseMedia[];
+  onResponseChange: (updatedResponse: ResponseMedia[]) => void;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  themeProps: ThemeProps;
+  styles?: Reactive3Styles;
+  containerStyle?: ViewStyle;
+  images: MappedImage[];
+  width?: number;
+  height?: number;
+}
+
+// ===== Props para Reactive7 =====
+export interface Reactive7Props {
+  reactive: ReactiveSchema;
+  responseUser: ResponseMedia[];
+  onResponseChange: (updatedResponse: ResponseMedia[]) => void;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  images: MappedImage[];
+  themeProps: ThemeProps;
+  styles?: Reactive7Styles;
+  containerStyle?: ViewStyle;
+  width?: number;
+  height?: number;
+}
+
+// ===== Props para Reactive12 =====
+export interface Reactive12Props {
+  reactive: ReactiveSchema;
+  responseUser: string[];
+  onResponseChange: (newResponse: string[]) => void;
+  userResponseStatus?: 'pending' | 'correct' | 'incorrect';
+  resetTrigger?: number;
+  onCorrectOrderChange?: (correctOrder: string[]) => void;
+  themeProps: ThemeProps;
+  styles?: Reactive12Styles;
+  containerStyle?: ViewStyle;
+}
+
+// ===== Estilos y Props para Reactive18 =====
+export interface Reactive18Styles {
+  container?: ViewStyle;
+  titleText?: TextStyle;
+  operationContainer?: ViewStyle;
+  operationText?: TextStyle;
+  touchableInput?: ViewStyle;
+  inputContainerFocused?: ViewStyle;
+  errorText?: TextStyle;
+}
+
+export interface Reactive18Props {
+  reactive: ReactiveSchema;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  keyValue: string;
+  setKey: (key: string) => void;
+  inputId: string;
+  isFocused: boolean;
+  setFocusId: (id: string | null) => void;
+  themeProps: ThemeProps;
+  styles?: Reactive18Styles;
+  containerStyle?: ViewStyle;
+}
+
+// ===== Estilos y Props para Reactive21 =====
+export interface Reactive21Styles {
+  container?: ViewStyle;
+  titleText?: TextStyle;
+  imagesContainer?: ViewStyle;
+  imageWrapper?: ViewStyle;
+  image?: ImageStyle;
+  operationContainer?: ViewStyle;
+  operationSymbol?: TextStyle;
+  inputButton?: ViewStyle;
+  inputFocused?: ViewStyle;
+  imageCircle?: ViewStyle;
+  feedbackContainer?: ViewStyle;
+  feedbackText?: TextStyle;
+}
+
+export interface Reactive21Props {
+  reactive: ReactiveSchema;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  numericResponse: { first: string; second: string; result: string };
+  focusedInput: 'first' | 'second' | 'result' | null;
+  onNumericChange: (newResponse: { first: string; second: string; result: string }) => void;
+  setFocusedInput: (field: 'first' | 'second' | 'result' | null) => void;
+  imageUrl: string;
+  themeProps: ThemeProps;
+  styles?: Reactive21Styles;
+  containerStyle?: ViewStyle;
+  screenWidth?: number;
+}
+
+// ===== Props para Reactive40 =====
+export interface Reactive40Props {
+  reactive: ReactiveSchema;
+  responseUser: string[];
+  onResponseChange: (newResponse: string[]) => void;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  images: MappedImage[];
+  themeProps: ThemeProps;
+  styles?: Reactive40Styles;
+  containerStyle?: ViewStyle;
+  resetTrigger?: number;
+}
+
+// ===== Estilos y Props para Reactive58 =====
+export interface Reactive58Styles {
+  // Solo definimos los contenedores clave usados en el componente
+  container?: ViewStyle;
+  buttonContainer?: ViewStyle;
+  alternativesContainer?: ViewStyle;
+  noAlternativesContainer?: ViewStyle;
+  noAlternativesText?: TextStyle;
+}
+
+export interface Reactive58Props {
+  reactive: ReactiveSchema;
+  responseUser: string[];
+  onResponseChange: (newResponse: string[]) => void;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  images: MappedImage[];
+  themeProps: ThemeProps;
+  styles?: Reactive58Styles;
+  containerStyle?: ViewStyle;
+}
+
+// ===== Props para NoReactive (Componente placeholder)
+export interface NoReactiveProps {
+  themeProps?: ThemeProps;
+}
+
+// ===== Tipos utilitarios internos =====
+
+// Para Reactive20
+export interface ImageCardProps {
+  img: { name: string; url: string };
+  quantity: number;
+  cardStyle?: ViewStyle;
+  imagesGridStyle?: ViewStyle;
+  imageWrapperStyle?: ViewStyle;
+  imageStyle?: ImageStyle;
+  theme: ThemeProps;
+}
+
+export interface ImageResponse {
+  id: string;
+  quantity: number;
+}
+
+export interface ReactiveContentWithImages {
+  text?: { response?: string[] };
+  images?: { response?: ImageResponse[] };
+}
+
+// Para Reactive12 (drag & drop)
+export interface DraggableProps {
+  value: string;
+  onDragStart: (value: string) => void;
+  disabled?: boolean;
+  styles?: Reactive12Styles;
+  themeProps: ThemeProps;
+}
+
+export interface DropZoneProps {
+  index: number;
+  value: string | null;
+  onDrop: (index: number) => void;
+  onDragOver: () => void;
+  isCorrect?: boolean;
+  isIncorrect?: boolean;
+  correctValue?: string;
+  userResponseStatus: 'pending' | 'correct' | 'incorrect';
+  styles?: Reactive12Styles;
+  themeProps: ThemeProps;
+} 

@@ -1,42 +1,10 @@
 // src/shared-components/reactives/reactivesFiles/Reactive40.tsx
 import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ViewStyle, Image, ImageStyle, TextStyle } from 'react-native';
-import { ReactiveSchema, ResponseMedia, ThemeProps } from '../types';
+import { View, Text, StyleSheet, ViewStyle, Image } from 'react-native';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive40Styles, Reactive40Props, MappedImage } from '../types/reactiveTypes';
 import AlternativeButton from '../components/AlternativeButton';
-
-// Interfaces para estilos personalizables
-export interface Reactive40Styles {
-  container?: ViewStyle;
-  questionContainer?: ViewStyle;
-  questionText?: TextStyle;
-  imageContainer?: ViewStyle;
-  imageWrapper?: ViewStyle;
-  image?: ImageStyle;
-  noAlternativesContainer?: ViewStyle;
-  noAlternativesText?: TextStyle;
-  alternativesContainer?: ViewStyle;
-  twoColumnsRow?: ViewStyle;
-  defaultRow?: ViewStyle;
-  alternativeWrapper?: ViewStyle;
-}
-
-interface MappedImage {
-  id: string;
-  url: string;
-  quantity: number;
-}
-
-interface Reactive40Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  images: MappedImage[];
-  themeProps: ThemeProps;
-  styles?: Reactive40Styles;
-  containerStyle?: ViewStyle;
-  resetTrigger?: number;
-}
 
 export const Reactive40: React.FC<Reactive40Props> = ({
   reactive,

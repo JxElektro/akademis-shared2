@@ -2,25 +2,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView, Platform } from 'react-native';
 import { DraxProvider, DraxView } from 'react-native-drax';
-import { ReactiveSchema, Reactive38Styles, ThemeProps } from '../types';
-
-interface MappedImage {
-  id: string;
-  url: string;
-}
-
-interface Reactive38Props {
-  reactive: ReactiveSchema;
-  images: MappedImage[];
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  resetTrigger?: number;
-  themeProps: ThemeProps;
-  styles?: Reactive38Styles;
-  containerStyle?: ViewStyle;
-  screenWidth?: number;
-}
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive38Styles, Reactive38Props, MappedImage } from '../types/reactiveTypes';
 
 // Componente para entornos web usando HTML5 Drag and Drop API
 const WebImage = ({ id, url, onDragStart, isDraggable }: { 

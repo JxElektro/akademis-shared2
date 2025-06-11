@@ -1,8 +1,9 @@
 module.exports = {
-  preset: 'ts-jest',
+  preset: 'react-native',
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
+    '^.+\\.(js|jsx|mjs|cjs)$': 'babel-jest',
     '^.+\\.(ts|tsx)$': ['ts-jest', {
       tsconfig: {
         jsx: 'react-jsx',
@@ -24,9 +25,10 @@ module.exports = {
     '!src/__tests__/**',
   ],
   moduleNameMapper: {
-    '^react-native$': '<rootDir>/src/__mocks__/react-native.js',
     '^@expo/vector-icons$': '<rootDir>/src/__mocks__/expo-vector-icons.js',
     '^react-native-drax$': '<rootDir>/src/__mocks__/react-native-drax.js',
     '^react-native-vector-icons': '<rootDir>/src/__mocks__/react-native-vector-icons.js',
+    '^react-native\/Libraries\/Animated\/NativeAnimatedHelper$': '<rootDir>/src/__mocks__/NativeAnimatedHelper.js',
   },
+  setupFiles: ['<rootDir>/jest.setup.js'],
 }; 

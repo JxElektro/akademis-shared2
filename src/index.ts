@@ -1,33 +1,23 @@
-   // Exportar todos los componentes
-  
-   export * from './components/AlternativeButton';
-   export * from './components/AlternativesTarget';
-   export * from './components/Card';
-   export * from './components/CustomButton';
-   export * from './components/IconButton';
-   export * from './components/ModalFullImage';
-   export * from './components/ModalText';
-   export * from './components/SimpleIconButton';
-   export * from './components/SquareButton';
+// Exportar todos los reactivos
+export { NoReactive } from './reactives/NoReactive';
+export { Reactive1 } from './reactives/Reactive1';
+export { Reactive2 } from './reactives/Reactive2';
+export { Reactive3 } from './reactives/Reactive3';
+export { Reactive7 } from './reactives/Reactive7';
+export { Reactive12 } from './reactives/Reactive12';
+export { Reactive18 } from './reactives/Reactive18';
+export { Reactive20 } from './reactives/Reactive20';
+export { Reactive21 } from './reactives/Reactive21';
+export { Reactive25 } from './reactives/Reactive25';
+export { Reactive38 } from './reactives/Reactive38';
+export { Reactive40 } from './reactives/Reactive40';
+export { Reactive42 } from './reactives/Reactive42';
+export { Reactive52 } from './reactives/Reactive52';
+export { Reactive58 } from './reactives/Reactive58';
+export { Reactive68 } from './reactives/Reactive68';
+export { Reactive70 } from './reactives/Reactive70';
+export { Reactive71 } from './reactives/Reactive71';
 
-   // Exportar todos los reactivos
-   export * from './reactives/Reactive1';
-   export * from './reactives/Reactive2';
-   export * from './reactives/Reactive3';
-   export * from './reactives/Reactive7';
-   export * from './reactives/Reactive12';
-   export * from './reactives/Reactive18';
-   export { Reactive20 } from './reactives/Reactive20';
-   export * from './reactives/Reactive21';
-   export * from './reactives/Reactive25';
-   export * from './reactives/Reactive38';
-   export * from './reactives/Reactive40';
-   export * from './reactives/Reactive42';
-   export * from './reactives/Reactive52';
-   export * from './reactives/Reactive58';
-   export * from './reactives/Reactive68';
-   export * from './reactives/Reactive70';
-   export * from './reactives/Reactive71';
-   export * from './reactives/NoReactive';
 
-   export * from './types/index';
+export type { ThemeProps } from './types/uiTypes';
+

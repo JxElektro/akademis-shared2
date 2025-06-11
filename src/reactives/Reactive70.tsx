@@ -1,22 +1,10 @@
 // src/shared-components/reactives/reactivesFiles/Reactive70.tsx
 import React from 'react';
 import { SquareButton, ButtonState, ButtonStatus } from '../components/SquareButton';
-import { ReactiveSchema, ThemeProps, Reactive70Styles } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive70Styles, Reactive70Props } from '../types/reactiveTypes';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-
-
-interface Reactive70Props {
-  reactive: ReactiveSchema;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  keyValue: string;
-  setKey: (value: string) => void;
-  inputId: string;
-  isFocused: boolean;
-  setFocusId: (id: string | null) => void;
-  themeProps: ThemeProps;
-  styles?: Reactive70Styles;
-  containerStyle?: ViewStyle;
-}
 
 const getButtonState = (
   userResponseStatus: 'pending' | 'correct' | 'incorrect',

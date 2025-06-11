@@ -1,7 +1,9 @@
 // src/reactives/reactivesFiles/Reactive42.tsx
 import React from 'react';
 import { DraxProvider, DraxView } from 'react-native-drax';
-import { ReactiveSchema, Reactive42Styles, ThemeProps } from '../types';
+import { ReactiveSchema } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
+import { Reactive42Styles, Reactive42Props, MappedImage } from '../types/reactiveTypes';
 import { View as RNView, Text as RNText, StyleSheet, ViewStyle, ScrollView as RNScrollView } from 'react-native';
 
 // Solución para el conflicto de tipos ReactNode
@@ -140,18 +142,6 @@ const WebDropZone = ({
     </div>
   );
 };
-
-interface Reactive42Props {
-  reactive: ReactiveSchema;
-  responseUser: string[];
-  onResponseChange: (newResponse: string[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  resetTrigger?: number;
-  themeProps: ThemeProps;
-  styles?: Reactive42Styles;
-  containerStyle?: ViewStyle;
-  screenWidth?: number;
-}
 
 export const Reactive42: React.FC<Reactive42Props> = ({
   reactive,

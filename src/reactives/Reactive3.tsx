@@ -4,36 +4,14 @@
 import React, { useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet, ViewStyle, Pressable, Image, ScrollView } from 'react-native';
 
-// Importar interfaces desde el archivo centralizado
-import { 
-  ThemeProps, 
-  ResponseMedia, 
-  ReactiveSchema,
-  Reactive3Styles 
-} from '../types';
 
-interface MappedImage {
-  id: string;
-  label: string;
-  url: string;
-}
-
-interface Reactive3Props {
-  reactive: ReactiveSchema;
-  responseUser: ResponseMedia[];
-  onResponseChange: (updatedResponse: ResponseMedia[]) => void;
-  userResponseStatus: 'pending' | 'correct' | 'incorrect';
-  // Props de tema
-  themeProps: ThemeProps;
-  // Props de estilo
-  styles?: Reactive3Styles;
-  containerStyle?: ViewStyle;
-  // Imágenes a mostrar (ahora por prop)
-  images: MappedImage[];
-  // Nuevas props para dimensiones
-  width?: number;
-  height?: number;
-}
+import {
+  Reactive3Styles,
+  Reactive3Props,
+  MappedImage,
+} from '../types/reactiveTypes';
+import { ReactiveSchema, ResponseMedia } from '../types/reactiveSchema';
+import { ThemeProps } from '../types/uiTypes';
 
 const CARD_ASPECT_RATIO = 3;
 const CARD_MARGIN = 16;

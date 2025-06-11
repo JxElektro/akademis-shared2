@@ -1,49 +1,27 @@
 // src/shared-components/ui/SquareButton.tsx
 import React from 'react';
-import { ThemeProps } from '../types';
-import { Pressable, Text, View, StyleSheet, TextStyle, ViewStyle, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import type { ThemeProps } from '../types/uiTypes';
+import {
+  ButtonSize,
+  ButtonState,
+  ButtonColor,
+  ButtonStatus,
+  SquareButtonProps,
+} from '../types/componentTypes';
+import {
+  getButtonFeedbackStyle,
+  getTextFeedbackStyle,
+  ResponseStatus,
+} from '../utils/feedbackStyles';
 
-export type ButtonSize = 'extraSmall' | 'small' | 'medium' | 'large' | 'keyboardSmall' | 'keyboardMedium' | 'alternative';
-export type ButtonState = 'border' | 'incomplete' | 'empty' | 'selected' | 'unselected' | 'subtraction' | 'default';
-export type ButtonColor = 'normal' | 'rose' | 'yellow' | 'blue' | 'green';
-export type ButtonStatus = 'incorrect' | 'correct' | undefined;
-
-interface SquareButtonProps {
-  /** Texto que se mostrará en el botón */
-  text?: string;
-  /** Función que se ejecutará al presionar el botón */
-  onPress?: () => void;
-  /** Tamaño del botón */
-  size: ButtonSize;
-  /** Estado visual del botón */
-  state?: ButtonState;
-  /** Color del botón */
-  color?: ButtonColor;
-  /** Estado de validación del botón */
-  status?: ButtonStatus;
-  /** Número máximo de caracteres permitidos */
-  max?: number;
-  /** Color personalizado del texto */
-  textColor?: string;
-  /** Etiqueta de accesibilidad */
-  accessibilityLabel?: string;
-  /** Estilos adicionales para el contenedor */
-  containerStyle?: ViewStyle;
-  /** Identificador para pruebas */
-  testID?: string;
-  /** Indica si el botón está deshabilitado */
-  disabled?: boolean;
-  /** Indica si el botón está enfocado */
-  isFocused?: boolean;
-  /** Estilos adicionales para el estado enfocado */
-  focusedStyle?: ViewStyle;
-  /** Función que se ejecuta cuando el botón recibe el foco */
-  onFocus?: () => void;
-  /** Función que se ejecuta cuando el botón pierde el foco */
-  onBlur?: () => void;
-  /** Props del tema */
-  themeProps: ThemeProps;
-}
+// Reexportar los tipos para mantener compatibilidad externa
+export type {
+  ButtonSize,
+  ButtonState,
+  ButtonColor,
+  ButtonStatus,
+};
 
 /**
  * Componente de botón cuadrado personalizable con diferentes tamaños, estados y colores.
@@ -97,7 +75,7 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
 
   // Definir el color del texto basado en la prop `color`
   const getTextColor = (colorType: ButtonColor): string => {
-    const defaultColor = themeProps.colors.primary.dark;
+    const defaultColor = themeProps.colors.primary.main;
     const colors = themeProps.colors as any;
 
     switch (colorType) {
@@ -194,9 +172,9 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
         };
       case 'selected':
         return {
-          backgroundColor: themeProps.colors.primary.lighter || themeProps.colors.primary.light,
+          backgroundColor: themeProps.colors.primary.light,
           borderWidth: themeProps.borders.width.normal,
-          borderColor: themeProps.colors.primary.light,
+          borderColor: themeProps.colors.primary.lightest,
         };
       case 'unselected':
         return {
@@ -220,22 +198,28 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
 
   containerType = getContainerType(state as ButtonState);
 
-  // Sobrescribir el tipo de contenedor si `status` es 'incorrect' o 'correct'
-  if (status === 'incorrect') {
-    containerType = {
-      backgroundColor: themeProps.colors.feedback.error.main,
-      borderWidth: themeProps.borders.width.normal,
-      borderColor: themeProps.colors.feedback.error.dark,
-    };
-    textColorStyle = { color: themeProps.colors.neutral.white };
-  } else if (status === 'correct') {
-    containerType = {
-      backgroundColor: themeProps.colors.feedback.success.main,
-      borderWidth: themeProps.borders.width.normal,
-      borderColor: themeProps.colors.feedback.success.dark,
-    };
-    textColorStyle = { color: themeProps.colors.neutral.white };
-  }
+  // Estilos de feedback centralizados
+  const feedbackContainerStyle = React.useMemo(
+    () =>
+      getButtonFeedbackStyle({
+        theme: themeProps,
+        status: (status ?? 'pending') as ResponseStatus,
+        isSelected: true,
+        isCorrectAnswer: status === 'correct',
+      }),
+    [themeProps, status]
+  );
+
+  const feedbackTextStyle = React.useMemo(
+    () =>
+      getTextFeedbackStyle({
+        theme: themeProps,
+        status: (status ?? 'pending') as ResponseStatus,
+        isSelected: true,
+        isCorrectAnswer: status === 'correct',
+      }),
+    [themeProps, status]
+  );
 
   return (
     <TouchableOpacity
@@ -244,6 +228,7 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
         styles.container,
         containerSize,
         containerType,
+        feedbackContainerStyle,
         containerStyle,
         disabled && styles.disabled,
         (isFocused || isAccessibilityFocused) && [styles.focused, focusedStyle],
@@ -262,7 +247,7 @@ export const SquareButton: React.FC<SquareButtonProps> = ({
         <Text style={[styles.cross, textColorStyle]}>{'X'}</Text>
       ) : (
         <Text
-          style={[styles.text, textSize, textColorStyle]}
+          style={[styles.text, textSize, textColorStyle, feedbackTextStyle]}
           numberOfLines={1}
           adjustsFontSizeToFit={true}
           minimumFontScale={0.5}
